@@ -4,10 +4,8 @@ import mongoose, { Document, Schema, Types } from "mongoose";
 export interface IStaff extends Document {
   name: string;
   email: string;
-  phone: number;
+  phone: string;
   password: string;
-  roleId: string;
-  AccountType: string;
   department: Types.ObjectId;
 }
 
@@ -25,13 +23,17 @@ const StaffSchema: Schema = new Schema<IStaff>(
       unique: true,
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
     department: {
       type: Schema.Types.ObjectId,
       ref: "Department",
+      required: true,
+    },
+    password: {
+      type: String,
       required: true,
     },
   },
